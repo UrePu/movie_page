@@ -9,6 +9,7 @@ input:focus {
 }
 .container {
   width: 100vw;
+  height: 100vh;
 }
 
 .header {
@@ -40,6 +41,7 @@ input:focus {
 .main_container {
   background-color: #b4b4b4;
   width: 100%;
+  height: calc(100vh - 250px);
   padding-bottom: 50px;
   display: flex;
   justify-content: start;
@@ -51,6 +53,7 @@ input:focus {
     margin: 30px 0px;
   }
   .content_container {
+    overflow-y: scroll;
     width: 100%;
     display: flex;
     flex-wrap: wrap;
@@ -69,7 +72,8 @@ input:focus {
     }
   }
 }
-
+.main_more {
+}
 .main_more :hover {
   cursor: pointer;
 }
