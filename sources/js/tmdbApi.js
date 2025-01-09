@@ -7,8 +7,13 @@ const options = {
     Authorization: apiKey,
   },
 };
+let getData = async (url) => {
+  let data = await fetch(url, options)
+    .then((res) => res.json())
+    .catch((err) => console.error(err));
+  // console.log(data);
 
-fetch("https://api.themoviedb.org/3/authentication", options)
-  .then((res) => res.json())
-  .then((res) => console.log(res))
-  .catch((err) => console.error(err));
+  return data;
+};
+export default getData;
+//https://image.tmdb.org/t/p/w500 뒤에다가 붙이면되네
