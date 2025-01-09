@@ -24,3 +24,4 @@ let getDataFromApi = async (urlDetail, urlNum, word) => {
 
   pageConstruct(data);
 };
+pageConstruct(data);
