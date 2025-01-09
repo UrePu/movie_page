@@ -24,4 +24,19 @@ let getDataFromApi = async (urlDetail, urlNum, word) => {
 
   pageConstruct(data);
 };
-pageConstruct(data);
+
+let pageConstruct = async (data) => {
+  let htmlData = data.results.map((d) => {
+    return [d.id, d.poster_path];
+  });
+  const contentContainer = document.querySelector(".content_container");
+  htmlData.forEach((e) => {
+    const newContent = document.createElement("div");
+    newContent.className = "content";
+    newContent.innerHTML = `
+    <div id ="${e[0]}" class="">
+      <img src="${imgUrlMain + e[1]}">
+    `;
+    contentContainer.appendChild(newContent);
+  });
+};
