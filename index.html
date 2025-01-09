@@ -6,6 +6,22 @@
     <title>Movie_Page</title>
     <link rel="stylesheet" href="./sources/css/style.css" />
     <script type="module" src="./sources/js/tmdbApi.js"></script>
+    <script type="module" src="./sources/js/script.js"></script>
   </head>
-  <body></body>
+  <body>
+    <div class="container">
+      <div class="header">
+        <div class="header_text">영화 검색하기</div>
+        <input class="header_search" />
+        <div class="header_bookmark">북마크 보기</div>
+      </div>
+      <div class="main_container">
+        <!-- 기본적으로 TOP Rated 영화들을 보여주고 if 검색어가 있다면 검색어에 해당하는것만 보여주기. -->
+        <div class="main_text">TOP Rated Movie</div>
+        <div class="content_container"></div>
+        <div class="main_more">더 받아오기</div>
+      </div>
+      <div class="footer"></div>
+    </div>
+  </body>
 </html>
