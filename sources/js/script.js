@@ -40,3 +40,19 @@ let pageConstruct = async (data) => {
     contentContainer.appendChild(newContent);
   });
 };
+let moreData = (totalPage) => {
+  let urlNumMore = 1;
+  let importedData = document.querySelector(".header_search");
+  document.querySelector(".main_more").addEventListener("click", () => {
+    urlNumMore++;
+    if (!importedData) {
+      getDataFromApi(null, urlNumMore);
+    } else {
+      getDataFromApi(null, urlNumMore, importedData.value);
+    }
+  });
+};
+moreData();
+getDataFromApi(null, 1, null);
+
+let searchData = () => {};
