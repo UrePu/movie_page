@@ -16,4 +16,3 @@ let getData = async (url) => {
   return data;
 };
 export default getData;
-//https://image.tmdb.org/t/p/w500 뒤에다가 붙이면되네

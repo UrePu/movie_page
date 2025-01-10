@@ -1,13 +1,12 @@
 import getData from "./tmdbApi.js";
+//img Url 의 기본형
 const imgUrlMain = "https://image.tmdb.org/t/p/w500";
+//데이터 받아오기
 let getDataFromApi = async (urlDetail, urlNum, word, clearPage) => {
   if (!urlDetail) {
     urlDetail = "top_rated";
-    // console.log("A");
   }
   if (!urlNum) {
-    // console.log("A");
-
     urlNum = 1;
   }
   if (!clearPage) {
@@ -28,7 +27,7 @@ let getDataFromApi = async (urlDetail, urlNum, word, clearPage) => {
 
   pageConstruct(data, clearPage);
 };
-
+//페이지 형성
 let pageConstruct = async (data, clearPage) => {
   const contentContainer = document.querySelector(".content_container");
   if (clearPage) {
@@ -49,6 +48,7 @@ let pageConstruct = async (data, clearPage) => {
     contentContainer.appendChild(newContent);
   });
 };
+//더 받아오기 부분
 let moreData = (totalPage) => {
   let urlNumMore = 1;
   let importedData = document.querySelector(".header_search");
@@ -62,6 +62,7 @@ let moreData = (totalPage) => {
   });
 };
 moreData();
+
 getDataFromApi(null, 1, null);
 
 let searchData = () => {
