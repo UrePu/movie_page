@@ -1,6 +1,7 @@
 import getData from "./tmdbApi.js";
+import makeModal from "./modal.js";
 //img Url 의 기본형
-const imgUrlMain = "https://image.tmdb.org/t/p/w500";
+const imgUrlMain = "https://image.tmdb.org/t/p/w1280";
 //데이터 받아오기
 let getDataFromApi = async (urlDetail, urlNum, word, clearPage) => {
   if (!urlDetail) {
@@ -13,7 +14,10 @@ let getDataFromApi = async (urlDetail, urlNum, word, clearPage) => {
     clearPage = false;
   }
   let url;
-  if (!word) {
+  // 'https://api.themoviedb.org/3/movie/278?language=en-US'
+  if (urlDetail !== "top_rated") {
+    url = `https://api.themoviedb.org/3/movie/${urlDetail}?language=ko-KR`;
+  } else if (!word) {
     url = `https://api.themoviedb.org/3/movie/${urlDetail}?language=ko-KR&page=${urlNum}`;
   } else {
     let encodedText = encodeURIComponent(word);
@@ -22,10 +26,16 @@ let getDataFromApi = async (urlDetail, urlNum, word, clearPage) => {
 
     url = `https://api.themoviedb.org/3/search/movie?query=${encodedText}&include_adult=${adult}&language=ko-KR&page=${urlNum}`;
   }
-  let data = await getData(url);
-  console.log(data);
+  // console.log(url);
 
+  let data = await getData(url);
+
+  if (urlDetail !== "top_rated") {
+    return data;
+  }
   pageConstruct(data, clearPage);
+
+  // console.log(data);
 };
 //페이지 형성
 let pageConstruct = async (data, clearPage) => {
@@ -43,11 +53,12 @@ let pageConstruct = async (data, clearPage) => {
     newContent.className = "content";
     newContent.innerHTML = `
     <div id ="${e[0]}" class="">
-      <img src="${imgUrlMain + e[1]}">
+      <img id ="${e[0]}" src="${imgUrlMain + e[1]}">
     `;
     contentContainer.appendChild(newContent);
   });
 };
+makeModal();
 //더 받아오기 부분
 let moreData = (totalPage) => {
   let urlNumMore = 1;
@@ -76,14 +87,6 @@ let searchData = () => {
   );
 };
 
-// let scrollDown = () => {
-//   window.addEventListener(
-//     "scroll",
-//     debounce((e) => {
-//       moreData();
-//     }, 1000)
-//   );
-// };
 function debounce(func, delay) {
   // timeoutID를 할당할 변수를 선언합니다.
   let timer = null;
@@ -100,3 +103,5 @@ function debounce(func, delay) {
   };
 }
 searchData();
+
+export default getDataFromApi;
