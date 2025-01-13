@@ -48,6 +48,8 @@ let pageConstruct = async (data, clearPage) => {
   let htmlData = data.results.map((d) => {
     return [d.id, d.poster_path];
   });
+  console.log(htmlData);
+
   htmlData.forEach((e) => {
     const newContent = document.createElement("div");
     newContent.className = "content";
@@ -81,9 +83,9 @@ let searchData = () => {
   document.querySelector(".header_search").addEventListener(
     "input",
     debounce((e) => {
-      getDataFromApi(null, 1, e.target.value, true);
+      getDataFromApi(null, 1, e.target.value.toLowerCase(), true);
       word.innerHTML = "검색 결과";
-    }, 1000)
+    }, 500)
   );
 };
 
