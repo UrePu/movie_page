@@ -52,9 +52,9 @@ let pageConstruct = async (data, clearPage) => {
 
   htmlData.forEach((e) => {
     const newContent = document.createElement("div");
+    newContent.id = e[0];
     newContent.className = "content";
     newContent.innerHTML = `
-    <div id ="${e[0]}" class="">
       <img id ="${e[0]}" src="${imgUrlMain + e[1]}">
     `;
     contentContainer.appendChild(newContent);
