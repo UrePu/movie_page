@@ -1,7 +1,6 @@
 import getDataFromApi from "./script.js";
 import bookMarkBtn from "./bookmark.js";
 let makeModal = () => {
-  let modalPage = document.querySelector(".modal");
   let container = document.querySelector(".container");
   let clickEvent = async (e) => {
     let targetTagId = Number(e.target.closest(".content").id);
@@ -10,7 +9,8 @@ let makeModal = () => {
       // console.log(data);
 
       let modalHtml = document.createElement("div");
-      modalHtml.innerHTML = `<div class="modal">
+      modalHtml.className = "modal";
+      modalHtml.innerHTML = `
         <div class="modal_body">
           <div class="modal_btn">
             <div class="modal_bookmark_btn">♡</div>
@@ -25,7 +25,7 @@ let makeModal = () => {
           rgba(0, 0, 0, 0.7) 75%,
           rgba(0, 0, 0, 1) 100%
         ),
-        url('https://image.tmdb.org/t/p/w1280/${data.poster_path}');background-size:cover">
+        url('https://image.tmdb.org/t/p/w1280/${data.backdrop_path}');background-size:cover">
             <div class="modal_title">${data.title}</div>
           </div>
           <div class="modal_text_container">
@@ -36,11 +36,11 @@ let makeModal = () => {
             </div>
           </div>
         </div>
-      </div>`;
+      `;
 
       container.appendChild(modalHtml);
       let modalContainer = document.querySelector(".modal");
-      console.log(modalContainer);
+      // console.log(modalContainer);
 
       modalContainer.addEventListener("click", (e) => {
         // console.log(e.target.className);

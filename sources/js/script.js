@@ -48,7 +48,7 @@ let pageConstruct = async (data, clearPage) => {
   let htmlData = data.results.map((d) => {
     return [d.id, d.poster_path];
   });
-  console.log(htmlData);
+  // console.log(htmlData);
 
   htmlData.forEach((e) => {
     const newContent = document.createElement("div");
