@@ -1,19 +1,26 @@
-import getDataFromApi from "./script.js";
+import { getDataFromApi } from "./script.js";
 import bookMarkBtn from "./bookmark.js";
 let makeModal = () => {
   let container = document.querySelector(".container");
-  let clickEvent = async (e) => {
-    let targetTagId = Number(e.target.closest(".content").id);
-    if (targetTagId) {
-      let data = await getDataFromApi(targetTagId, null, null, null);
-      // console.log(data);
+  // console.log("??");
 
+  let clickEvent = async (e) => {
+    let targetTag = e.target.closest(".content");
+    if (targetTag) {
+      let targetTagId = Number(targetTag.id);
+      let data = await getDataFromApi("modal", targetTagId, null, null, null);
+
+      const value = JSON.parse(localStorage.getItem("bookMarkedID"));
+      let bookmarked = "♡";
+      if (value !== null && value.includes(data.id)) {
+        bookmarked = "♥";
+      }
       let modalHtml = document.createElement("div");
       modalHtml.className = "modal";
       modalHtml.innerHTML = `
         <div class="modal_body">
           <div class="modal_btn">
-            <div class="modal_bookmark_btn">♡</div>
+            <div class="modal_bookmark_btn">${bookmarked}</div>
             <div class="modal_close_btn">X</div>
           </div>
           <div class="modal_img" style="background : linear-gradient(
@@ -51,7 +58,7 @@ let makeModal = () => {
           container.removeChild(modalHtml);
         }
         if (e.target.className === "modal_bookmark_btn") {
-          bookMarkBtn(data.id);
+          bookMarkBtn(data.id, data);
         }
       });
     }

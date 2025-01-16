@@ -8,6 +8,8 @@ const options = {
   },
 };
 let getData = async (url) => {
+  // console.log(url);
+
   let data = await fetch(url, options)
     .then((res) => res.json())
     .catch((err) => console.error(err));

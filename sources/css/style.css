@@ -12,6 +12,19 @@ input:focus {
   height: 100vh;
   position: relative;
 }
+.header_bookmark_container {
+  display: flex;
+  div {
+    cursor: pointer;
+    padding: 5px;
+    font-size: 20px;
+    font-weight: 800;
+    color: white;
+    margin: 0px 5px;
+    background-color: #807f7f;
+    border-radius: 5px;
+  }
+}
 .modal {
   position: absolute;
   display: flex;
