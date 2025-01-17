@@ -11,7 +11,6 @@ function bookMarkBtn(targetTagId, data) {
     if (word === "북마크 보기") {
       window.location.reload();
     }
-
     modalBookmarkBtn.innerHTML = "♡";
     const newArray = value.filter((item) => item !== targetTagId);
     localStorage.setItem("bookMarkedID", JSON.stringify(newArray));
